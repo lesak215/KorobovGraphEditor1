@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KorobovGraphEditor1", "KorobovGraphEditor1\KorobovGraphEditor1.csproj", "{0F7D4263-46C3-4A7D-B2C7-28502F7FAFFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F7D4263-46C3-4A7D-B2C7-28502F7FAFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F7D4263-46C3-4A7D-B2C7-28502F7FAFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F7D4263-46C3-4A7D-B2C7-28502F7FAFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F7D4263-46C3-4A7D-B2C7-28502F7FAFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47562973-D9C8-4159-8EDF-59CF1F9A1F8A}
+	EndGlobalSection
+EndGlobal
