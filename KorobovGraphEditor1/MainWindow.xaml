@@ -6,5 +6,39 @@
         xmlns:local="clr-namespace:KorobovGraphEditor1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar Header="Инструменты">
+                <ToggleButton Name="PencilToolButton" 
+                              Content="Карандаш"
+                              ToolTip="Свободное рисование"
+                              IsChecked="True"/>
+                <ToggleButton Name="LineToolButton" 
+                              Content="Линия" 
+                              ToolTip="Рисование линий"/>
+                <ToggleButton Name="RectangleToolButton" 
+                              Content="Прямоугольник" 
+                              ToolTip="Рисование прямоугольников"/>
+                <ToggleButton Name="EllipseToolButton" 
+                              Content="Эллипс" 
+                              ToolTip="Рисование эллипсов"/>
+
+                <Separator/>
+
+                <Button Name="ClearButton" 
+                        Content="Очистить" 
+                        ToolTip="Очистить холст"/>
+                <Button Name="SaveButton" 
+                        Content="Сохранить PNG" 
+                        ToolTip="Сохранить рисунок в PNG"/>
+            </ToolBar>
+        </ToolBarTray>
+
+        <Canvas Name="DrawingCanvas" 
+                Background="White" 
+                Margin="5">
+            <Border BorderBrush="LightGray" BorderThickness="1"/>
+        </Canvas>
+
+    </DockPanel>
 </Window>
