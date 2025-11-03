@@ -11,8 +11,7 @@
             <ToolBar Header="Инструменты">
                 <ToggleButton Name="PencilToolButton" 
                               Content="Карандаш"
-                              ToolTip="Свободное рисование"
-                              IsChecked="True"/>
+                              ToolTip="Свободное рисование"/>
                 <ToggleButton Name="LineToolButton" 
                               Content="Линия" 
                               ToolTip="Рисование линий"/>
