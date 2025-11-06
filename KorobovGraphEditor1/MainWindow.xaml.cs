@@ -20,6 +20,18 @@ namespace KorobovGraphEditor1
         private ToolManager _toolManager;
         private DrawingTool _currentDrawingTool;
         private bool _isDrawing = false;
+        private FileService _fileService;
+        public MainWindow()
+        {
+            InitializeComponent();
+            InitializeToolManager();
+            InitializeDrawingTools();
+            InitializeFileService();
+        }
+        private void InitializeFileService()
+        {
+            _fileService = new FileService();
+        }
         private void InitializeToolManager()
         {
             _toolManager = new ToolManager();
@@ -37,12 +49,7 @@ namespace KorobovGraphEditor1
             DrawingCanvas.MouseMove += DrawingCanvas_MouseMove;
             DrawingCanvas.MouseUp += DrawingCanvas_MouseUp;
         }
-        public MainWindow()
-        {
-            InitializeComponent();
-            InitializeToolManager();
-            InitializeDrawingTools();
-        }
+
         private void DrawingCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -95,7 +102,22 @@ namespace KorobovGraphEditor1
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Реализация в процессе.");
+            if (DrawingCanvas.Children.Count == 0)
+            {
+                MessageBox.Show("Нет элементов для сохранения", "Информация",
+                               MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            try
+            {
+                _fileService.SaveCanvasToPng(DrawingCanvas);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
