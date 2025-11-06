@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static KorobovGraphEditor1.classes.ToolManager;
 
 namespace KorobovGraphEditor1
 {
@@ -21,13 +22,18 @@ namespace KorobovGraphEditor1
         private DrawingTool _currentDrawingTool;
         private bool _isDrawing = false;
         private FileService _fileService;
+        private Brush _currentColor = Brushes.Black;
+        
         public MainWindow()
         {
             InitializeComponent();
             InitializeToolManager();
             InitializeDrawingTools();
             InitializeFileService();
+            CurrentColorPreview.Fill = _currentColor;
+            ColorComboBox.SelectedIndex = 0;
         }
+
         private void InitializeFileService()
         {
             _fileService = new FileService();
@@ -83,17 +89,40 @@ namespace KorobovGraphEditor1
                 _currentDrawingTool = null;
             }
         }
+        private void ColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ColorComboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                _currentColor = selectedItem.Background;
+                CurrentColorPreview.Fill = _currentColor;
+            }
+        }
 
         private DrawingTool CreateToolFromType(ToolManager.Tools toolType)
         {
-            return toolType switch
+            DrawingTool tool;
+
+            switch (toolType)
             {
-                ToolManager.Tools.Pencil => new PencilTool(),
-                ToolManager.Tools.Line => new LineTool(),
-                ToolManager.Tools.Rectangle => new RectangleTool(),
-                ToolManager.Tools.Ellipse => new EllipseTool(),
-                _ => new PencilTool()
-            };
+                case ToolManager.Tools.Pencil:
+                    tool = new PencilTool();
+                    break;
+                case ToolManager.Tools.Line:
+                    tool = new LineTool();
+                    break;
+                case ToolManager.Tools.Rectangle:
+                    tool = new RectangleTool();
+                    break;
+                case ToolManager.Tools.Ellipse:
+                    tool = new EllipseTool();
+                    break;
+                default:
+                    tool = new PencilTool();
+                    break;
+            }
+
+            tool.Stroke = _currentColor;
+            return tool;
         }
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {

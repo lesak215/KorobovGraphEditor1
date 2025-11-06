@@ -26,7 +26,31 @@
                               ToolTip="Рисование эллипсов"
                               Tag="Ellipse"/>
 
-                <Separator/>
+    <Separator/>
+        <Label Content="Цвет:" VerticalAlignment="Center"/>
+          <Rectangle Name="CurrentColorPreview" 
+          Width="20" 
+          Height="20" 
+          Stroke="DarkGray" 
+          StrokeThickness="1"
+          Fill="Black"
+          VerticalAlignment="Center"
+          Margin="5,0"/>
+          <ComboBox Name="ColorComboBox" 
+            Width="100"
+            SelectionChanged="ColorComboBox_SelectionChanged"
+            ToolTip="Выберите цвет"
+            VerticalAlignment="Center">
+                    <ComboBoxItem Background="Black" Content="Черный" Tag="Black"/>
+                    <ComboBoxItem Background="Red" Content="Красный" Tag="Red"/>
+                    <ComboBoxItem Background="Blue" Content="Синий" Tag="Blue"/>
+                    <ComboBoxItem Background="Green" Content="Зеленый" Tag="Green"/>
+                    <ComboBoxItem Background="Yellow" Content="Желтый" Tag="Yellow"/>
+                    <ComboBoxItem Background="Purple" Content="Фиолетовый" Tag="Purple"/>
+                    <ComboBoxItem Background="Orange" Content="Оранжевый" Tag="Orange"/>
+          </ComboBox>
+
+    <Separator/>
 
                 <Button Name="ClearButton" 
                         Content="Очистить" 
