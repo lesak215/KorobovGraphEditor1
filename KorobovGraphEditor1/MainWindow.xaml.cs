@@ -18,6 +18,8 @@ namespace KorobovGraphEditor1
     public partial class MainWindow : Window
     {
         private ToolManager _toolManager;
+        private DrawingTool _currentDrawingTool;
+        private bool _isDrawing = false;
         private void InitializeToolManager()
         {
             _toolManager = new ToolManager();
@@ -29,10 +31,62 @@ namespace KorobovGraphEditor1
 
             _toolManager.SetDefaultTool();
         }
+        private void InitializeDrawingTools()
+        {
+            DrawingCanvas.MouseDown += DrawingCanvas_MouseDown;
+            DrawingCanvas.MouseMove += DrawingCanvas_MouseMove;
+            DrawingCanvas.MouseUp += DrawingCanvas_MouseUp;
+        }
         public MainWindow()
         {
             InitializeComponent();
             InitializeToolManager();
+            InitializeDrawingTools();
+        }
+        private void DrawingCanvas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                _isDrawing = true;
+                var position = e.GetPosition(DrawingCanvas);
+
+                _currentDrawingTool = CreateToolFromType(_toolManager.CurrentTool);
+                _currentDrawingTool.OnMouseDown(position);
+
+                DrawingCanvas.Children.Add(_currentDrawingTool.GetShape());
+            }
+        }
+
+        private void DrawingCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isDrawing && _currentDrawingTool != null)
+            {
+                var position = e.GetPosition(DrawingCanvas);
+                _currentDrawingTool.OnMouseMove(position);
+            }
+        }
+
+        private void DrawingCanvas_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (_isDrawing && _currentDrawingTool != null)
+            {
+                var position = e.GetPosition(DrawingCanvas);
+                _currentDrawingTool.OnMouseUp(position);
+                _isDrawing = false;
+                _currentDrawingTool = null;
+            }
+        }
+
+        private DrawingTool CreateToolFromType(ToolManager.Tools toolType)
+        {
+            return toolType switch
+            {
+                ToolManager.Tools.Pencil => new PencilTool(),
+                ToolManager.Tools.Line => new LineTool(),
+                ToolManager.Tools.Rectangle => new RectangleTool(),
+                ToolManager.Tools.Ellipse => new EllipseTool(),
+                _ => new PencilTool()
+            };
         }
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
