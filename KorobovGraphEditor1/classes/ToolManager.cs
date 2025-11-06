@@ -11,7 +11,6 @@ namespace KorobovGraphEditor1.classes
     {
         private readonly List<ToggleButton> _toolButtons;
         private Tools _currentTool;
-
         public enum Tools
         {
             Pencil,

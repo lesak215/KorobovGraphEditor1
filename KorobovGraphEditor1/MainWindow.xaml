@@ -11,16 +11,20 @@
             <ToolBar Header="Инструменты">
                 <ToggleButton Name="PencilToolButton" 
                               Content="Карандаш"
-                              ToolTip="Свободное рисование"/>
+                              ToolTip="Свободное рисование"
+                              Tag="Pencil"/>
                 <ToggleButton Name="LineToolButton" 
                               Content="Линия" 
-                              ToolTip="Рисование линий"/>
+                              ToolTip="Рисование линий"
+                              Tag="Line"/>
                 <ToggleButton Name="RectangleToolButton" 
                               Content="Прямоугольник" 
-                              ToolTip="Рисование прямоугольников"/>
+                              ToolTip="Рисование прямоугольников"
+                              Tag="Rectangle"/>
                 <ToggleButton Name="EllipseToolButton" 
                               Content="Эллипс" 
-                              ToolTip="Рисование эллипсов"/>
+                              ToolTip="Рисование эллипсов"
+                              Tag="Ellipse"/>
 
                 <Separator/>
 
