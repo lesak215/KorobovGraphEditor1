@@ -30,10 +30,12 @@
 
                 <Button Name="ClearButton" 
                         Content="Очистить" 
-                        ToolTip="Очистить холст"/>
+                        ToolTip="Очистить холст"
+                        Click="ClearButton_Click"/>
                 <Button Name="SaveButton" 
                         Content="Сохранить PNG" 
-                        ToolTip="Сохранить рисунок в PNG"/>
+                        ToolTip="Сохранить рисунок в PNG"
+                        Click="SaveButton_Click"/>
             </ToolBar>
         </ToolBarTray>
 
